@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ufc · 网站用途速览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: #f7fafc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 卡片式网格背景 */
+        .page-grid {
+            background: 
+                linear-gradient(145deg, #e6f3f0 0%, #f0f7f5 100%);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem 3rem;
+            box-shadow: 0 8px 30px rgba(0, 40, 30, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-grid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 12% 8%, #cce8e0 0.5px, transparent 0.5px),
+                radial-gradient(circle at 85% 22%, #b8dbd1 0.6px, transparent 0.6px),
+                radial-gradient(circle at 40% 70%, #cde3db 0.4px, transparent 0.4px),
+                radial-gradient(circle at 70% 85%, #b3d3c8 0.7px, transparent 0.7px);
+            background-size: 60px 60px, 90px 90px, 70px 70px, 110px 110px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        /* hero 头 */
+        .hero-tag {
+            display: inline-block;
+            background: #2b6e5e;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0d2b26;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #3d5a54;
+            border-left: 3px solid #4f9b8a;
+            padding-left: 1rem;
+            margin: 0.75rem 0 1.8rem 0.2rem;
+            font-weight: 400;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(1px);
+            border-radius: 0 8px 8px 0;
+            width: fit-content;
+        }
+
+        /* 正文卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-item {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(2px);
+            border-radius: 1.25rem;
+            padding: 1.4rem 1.6rem;
+            border: 1px solid rgba(100, 160, 140, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 20, 16, 0.04);
+            transition: all 0.2s;
+        }
+
+        .card-item:hover {
+            background: rgba(255, 255, 255, 0.92);
+            border-color: #6bb09e;
+            box-shadow: 0 6px 18px rgba(45, 110, 90, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1c453c;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #429e86;
+            border-radius: 12px;
+            margin-right: 0.3rem;
+        }
+
+        .card-text {
+            color: #2b4a42;
+            font-size: 0.95rem;
+        }
+
+        /* 引用样式 */
+        .quote-block {
+            background: rgba(30, 100, 80, 0.07);
+            border-left: 4px solid #2b7864;
+            padding: 1rem 1.4rem;
+            margin: 0.8rem 0 0.2rem;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #1f4a3f;
+            font-size: 0.95rem;
+        }
+
+        .quote-block::before {
+            content: "💡 ";
+            font-style: normal;
+            opacity: 0.7;
+        }
+
+        /* 访问句 */
+        .visit-line {
+            background: #e1f0ea;
+            border-radius: 60px;
+            padding: 0.8rem 1.6rem;
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            border: 1px solid #b2d3c6;
+            color: #1c4239;
+            font-weight: 500;
+        }
+
+        .visit-line a {
+            color: #115e4b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #429e86;
+            padding-bottom: 1px;
+            transition: 0.15s;
+        }
+
+        .visit-line a:hover {
+            background: #429e86;
+            color: white;
+            border-bottom-color: #429e86;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        .faq-mini {
+            margin-top: 1.8rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.4rem;
+            border: 1px dashed #8dc0b0;
+        }
+
+        .faq-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 1rem;
+            font-size: 0.9rem;
+            color: #2e5b4e;
+        }
+
+        .faq-row span:first-child {
+            font-weight: 600;
+            color: #1a453b;
+            min-width: 3.8rem;
+        }
+
+        .faq-row a {
+            color: #14735b;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #7fb7a7;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(100, 150, 130, 0.2);
+            margin: 0.4rem 0 1rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 0.8rem;
+            }
+            .page-grid {
+                padding: 1.2rem 1rem 2rem;
+                border-radius: 1.8rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .card-item {
+                padding: 1rem 1.2rem;
+            }
+            .subhead {
+                font-size: 0.9rem;
+                padding-left: 0.7rem;
+            }
+            .visit-line {
+                font-size: 0.88rem;
+                padding: 0.7rem 1rem;
+                border-radius: 40px;
+            }
+            .faq-mini {
+                padding: 0.9rem 1rem;
+            }
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #5e7e74;
+            text-align: center;
+            border-top: 1px solid #d0e3db;
+            padding-top: 1.4rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-grid">
+        <div class="hero-tag">· 网站用途 ·</div>
+        <h1>识别 ufc 网站的实用视角</h1>
+        <div class="subhead">一篇简洁的导览，帮你快速判断这个站点能做什么、适合谁</div>
+
+        <div class="card-grid">
+            <div class="card-item">
+                <div class="card-title"><span class="dot"></span>它是什么性质的网站？</div>
+                <div class="card-text">
+                    从域名结构看，<strong>cn-ssl-ufc.com</strong> 是一个以“ufc”为核心标识的独立站点。它并非 UFC 官方赛事或媒体，而是一个围绕“ufc”关键词搭建的信息聚合 / 服务类页面。无论你是偶然发现、还是主动搜索而来，都可以把它看作一个主题入口。
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="card-title"><span class="dot"></span>快速了解网站定位</div>
+                <div class="card-text">
+                    综合页面风格与内容倾向，这个站点的用途倾向于：为对“ufc”感兴趣的用户提供一站式的摘要介绍、资源指向或基础说明。它不承载直播或票务功能，更像一个干净的说明页，帮你节省筛选时间。
+                </div>
+                <div class="quote-block">
+                    如果你正在寻找与 <a href="https://cn-ssl-ufc.com" style="text-decoration:underline;color:#14735b;font-weight:600;">ufc</a> 相关的概括性信息或导航，这个页面可以作为起点。
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="card-title"><span class="dot"></span>适合哪些场景？</div>
+                <div class="card-text">
+                    ✅ 想快速确认域名是否与 UFC 有关联<br>
+                    ✅ 需要一份简洁的站点用途说明，用于判断是否继续浏览<br>
+                    ✅ 对“ufc”关键词有基础兴趣，希望看到清晰、克制的介绍，而非广告堆砌<br>
+                    ✅ 移动端阅读，偏好卡片式布局与柔和配色
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="card-title"><span class="dot"></span>内容风格与承诺</div>
+                <div class="card-text">
+                    本页采用平实语气，不渲染焦虑，不引导冲动点击。你可以根据自己的需要，决定是否深入了解。网站本身不存储敏感数据，仅作为信息展示用途。
+                </div>
+                <div class="quote-block">
+                    提示：任何网站都建议先阅读“关于”页或服务说明，再决定下一步操作。
+                </div>
+            </div>
+        </div>
+
+        <!-- 访问句嵌入链接 -->
+        <div class="visit-line">
+            📌 想直接查看网站内容？这里是最简洁的入口：<a href="https://cn-ssl-ufc.com">ufc</a>
+        </div>
+
+        <!-- 小FAQ摘要 -->
+        <div class="faq-mini">
+            <div class="faq-row">
+                <span>❓ 常见问题</span>
+                <span>这个站和UFC官方有关系吗？ → 没有直接关联，是独立的主题说明页。</span>
+            </div>
+            <hr>
+            <div class="faq-row">
+                <span>🔍 怎么用？</span>
+                <span>直接访问 <a href="https://cn-ssl-ufc.com">ufc</a> 即可看到页面全貌，所有内容均为公开信息。</span>
+            </div>
+            <hr>
+            <div class="faq-row">
+                <span>📱 移动优化</span>
+                <span>本页面已适配手机屏幕，卡片可横向延展，字体清晰。</span>
+            </div>
+        </div>
+
+        <footer>
+            简洁博客式 · 用途说明页 · 内容仅供参考
+        </footer>
+    </div>
+</div>
+</body>
+</html>
